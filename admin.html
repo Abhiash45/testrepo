@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+</head>
+<body>
+    <h2>Admin Dashboard - Add Donor Record</h2>
+    <form method="POST">
+        <input name="weone_id" placeholder="WeOne ID" required><br>
+        <input name="name" placeholder="Donor Name"><br>
+        <input name="date_given" placeholder="Date Given"><br>
+        <input name="ripple_no" placeholder="Ripple No"><br>
+        <input name="used_on" placeholder="Used On"><br>
+        <input name="location" placeholder="Location"><br>
+        <input name="beneficiary" placeholder="Beneficiary"><br>
+        <input name="use_purpose" placeholder="Use Purpose"><br>
+        <input name="change_statement" placeholder="Change Statement"><br>
+        <button type="submit">Save</button>
+    </form>
+
+    <h3>All Donors</h3>
+    <ul>
+        {% for row in data %}
+        <li>{{ row[0] }} - {{ row[1] }} - {{ row[2] }} - {{ row[3] }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
