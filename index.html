@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WeOne Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f8;
+            margin: 0;
+        }
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #0277bd;
+        }
+        .impact-report-form {
+            margin-bottom: 20px;
+        }
+        input[type="text"], input[type="date"] {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #0277bd;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #01579b;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        th {
+            background-color: #0288d1;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>WeOne Dashboard</h2>
+    <p>“Every One Counts.”</p>
+
+    <div class="impact-report-form">
+        <h3>Submit Impact Report</h3>
+        <form action="/save-impact" method="POST">
+            <p>Date Used: <input type="date" name="date_used" required></p>
+            <p>Location: <input type="text" name="location" placeholder="City, Country" required></p>
+            <p>Beneficiary Name: <input type="text" name="beneficiary" required></p>
+            <p>Purpose: <input type="text" name="purpose" required></p>
+            <button type="submit">Save Impact Report</button>
+        </form>
+    </div>
+
+    <div class="impact-list">
+        <h3>Submitted Impact Reports</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Date Used</th>
+                    <th>Location</th>
+                    <th>Beneficiary</th>
+                    <th>Purpose</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if impact_data %}
+                    {% for impact in impact_data %}
+                        <tr>
+                            <td>{{ impact.date_used }}</td>
+                            <td>{{ impact.location }}</td>
+                            <td>{{ impact.beneficiary }}</td>
+                            <td>{{ impact.purpose }}</td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td colspan="4">No impact reports submitted yet.</td>
+                    </tr>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+
+    <div style="margin-top: 20px;">
+        <button onclick="window.location.href='/admin-login'">Admin Login</button>
+    </div>
+</div>
+
+</body>
+</html>
